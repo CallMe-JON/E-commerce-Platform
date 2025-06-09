@@ -1,0 +1,20 @@
+<h2><i class="fas fa-history"></i> Order History</h2>
+
+<div ng-if="orders.length === 0">
+    <p><i class="fas fa-box-open"></i> You have no orders yet.</p>
+    <a href="#/products"><i class="fas fa-shopping-cart"></i> Start Shopping</a>
+</div>
+
+<div ng-repeat="order in orders" class="order-card">
+    <h3><i class="fas fa-receipt"></i> Order ID: {{ order.id }}</h3>
+    <p><i class="fas fa-calendar-alt"></i> Date: {{ order.orderDate | date:'medium' }}</p>
+    <p><i class="fas fa-dollar-sign"></i> Total: ${{ order.totalAmount | number:2 }}</p>
+    <p><i class="fas fa-info-circle"></i> Status: <strong>{{ order.status }}</strong></p>
+
+    <h4><i class="fas fa-boxes"></i> Items:</h4>
+    <ul>
+        <li ng-repeat="item in order.orderItems">
+            <i class="fas fa-box"></i> {{ item.product.name }} ({{ item.quantity }} x ${{ item.price | number:2 }})
+        </li>
+    </ul>
+</div>

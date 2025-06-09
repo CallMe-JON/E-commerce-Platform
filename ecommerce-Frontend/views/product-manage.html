@@ -1,0 +1,94 @@
+
+<div >
+  <h2 class="text-center"><i class="fas fa-pen-to-square"></i> Add Product</h2>
+  <form class="form-container">
+
+    <div class="mb-3">
+      <label class="form-label"><i class="fas fa-tag"></i>Product Name</label>
+      <input type="text" class="form-control" placeholder="Enter product name" ng-model="newProduct.name">
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label"><i class="fas fa-align-left"></i>Description</label>
+      <input type="text" class="form-control" placeholder="Enter Product Description" ng-model="newProduct.description">
+    </div>
+
+    <!-- Image URL -->
+    <div class="mb-3">
+      <label class="form-label"><i class="fas fa-image"></i>Image URL</label>
+      <input type="text" class="form-control" placeholder="Enter image URL" ng-model="newProduct.imageUrl">
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <label class="form-label"><i class="fas fa-dollar-sign"></i>Price</label>
+      <input type="number" class="form-control" step="0.01" placeholder="Enter price" ng-model="newProduct.price">
+    </div>
+
+    <!-- Stock -->
+    <div class="mb-3">
+      <label class="form-label"><i class="fas fa-boxes"></i>Stock</label>
+      <input type="number" class="form-control" placeholder="Enter stock quantity" ng-model="newProduct.stock">
+    </div>
+
+    
+    <button type="button" ng-click="addToProduct(newProduct)">
+      <i class="fas fa-save"></i> Add New Product
+    </button>
+  </form>
+
+  <h3 style="margin-top:2em;">Manage Products</h3>
+  
+    <table class="table product-manage-table">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in products">
+      <td>
+        <img ng-src="{{product.imageUrl || 'https://via.placeholder.com/60x60?text=No+Image'}}" alt="Product Image" />
+      </td>
+      <td>
+        <span ng-if="!product.editing">{{product.name}}</span>
+        <input ng-if="product.editing" ng-model="product.name" class="form-control" />
+      </td>
+      <td>
+        <span ng-if="!product.editing">{{product.description}}</span>
+        <input ng-if="product.editing" ng-model="product.description" class="form-control" />
+      </td>
+      
+      <td>
+        <span ng-if="!product.editing">{{product.price | currency}}</span>
+        <input ng-if="product.editing" type="number" ng-model="product.price" class="form-control" />
+      </td>
+      <td>
+        <span ng-if="!product.editing">{{product.stock}}</span>
+        <input ng-if="product.editing" type="number" ng-model="product.stock" class="form-control" />
+      </td>
+      <td>
+        <button ng-if="!product.editing" class="action-btn edit" ng-click="editProduct(product)" title="Edit">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button ng-if="product.editing" class="action-btn save" ng-click="updateProduct(product)" title="Save">
+          <i class="fas fa-save"></i>
+        </button>
+        <button ng-if="product.editing" class="action-btn cancel" ng-click="cancelEdit(product)" title="Cancel">
+          <i class="fas fa-times"></i>
+        </button>
+        <button class="action-btn delete" ng-click="deleteProduct(product)" title="Delete">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

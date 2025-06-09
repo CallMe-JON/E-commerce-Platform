@@ -1,0 +1,14 @@
+<div class="login-center-wrapper">
+    <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+    <form ng-submit="login()">
+        <label for="username"><i class="fas fa-user"></i> Username:</label>
+        <input type="text" id="username" ng-model="credentials.username" required><br>
+
+        <label for="password"><i class="fas fa-lock"></i> Password:</label>
+        <input type="password" id="password" ng-model="credentials.password" required><br>
+        
+        <button type="submit"><i class="fas fa-arrow-right"></i> Login</button>
+    </form>
+    <p class="error-message" ng-if="loginError">{{ loginError }}</p>
+    <p>Don't have an account? <a href="#!/register"><i class="fas fa-user-plus"></i> Register here</a></p>
+</div>

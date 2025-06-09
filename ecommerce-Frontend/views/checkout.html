@@ -1,0 +1,14 @@
+<h2>Checkout</h2>
+<h3>Order Summary</h3>
+<div ng-if="cartItems.length === 0">
+    <p>Your cart is empty. Please add items to your cart before checking out.</p>
+    <a href="#/products">Continue Shopping</a>
+</div>
+<div ng-if="cartItems.length > 0">
+    <div ng-repeat="item in cartItems">
+        <p>{{ item.product.name }} x {{ item.quantity }} = ${{ (item.product.price * item.quantity) | number:2 }}</p>
+    </div>
+    <h4>Total: ${{ totalAmount | number:2 }}</h4>
+    <p>This is a simplified checkout. In a real app, you'd add shipping details, payment forms, and address selection here.</p>
+    <button ng-click="placeOrder()">Confirm Order & Pay</button>
+</div>

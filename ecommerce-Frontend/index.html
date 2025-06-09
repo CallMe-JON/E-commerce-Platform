@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ecommerceApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Platform</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+        <div class="container">
+            <nav>
+                <div class="nav-left">
+                    <a href="#!/products" class="yakusa-logo-text">
+                        YAKUZA
+                     </a>
+                    <a href="#!/cart">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                    </a>
+                    <a href="#!/orders" ng-show="isLoggedIn()">
+                        <i class="fas fa-box"></i> My Orders
+                    </a>
+                    <a href="#!/admin" ng-show="isAdmin()">
+                        <i class="fas fa-cogs"></i>Manage Products
+                    </a>
+                </div>
+
+                <div class="nav-right">
+                    <span class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" ng-model="searchName">
+                    </span>
+
+                    <span ng-show="isLoggedIn()">
+                        <i class="fas fa-user"></i>{{getUsername()}}                        
+                    </span>
+                    <a href="#!/login" ng-hide="isLoggedIn()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="#!/register" ng-hide="isLoggedIn()">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                    <a href="" ng-click="logout()" ng-show="isLoggedIn()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
+            </nav>
+
+            <div ng-view></div>
+        </div>
+
+        <script src="app.js"></script>
+        <script src="services/auth.service.js"></script>
+        <script src="services/product.service.js"></script>
+        <script src="services/cart.service.js"></script>
+        <script src="services/order.service.js"></script>
+        <script src="controllers/product-list.controller.js"></script>
+        <script src="controllers/product-detail.controller.js"></script>
+        <script src="controllers/shopping-cart.controller.js"></script>
+        <script src="controllers/checkout.controller.js"></script>
+        <script src="controllers/order-history.controller.js"></script>
+        <script src="controllers/auth.controller.js"></script>
+        <script src="controllers/product-manage.controller.js"></script>
+        
+</body>
+</html>
